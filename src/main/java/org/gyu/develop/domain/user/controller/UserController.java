@@ -1,9 +1,8 @@
 package org.gyu.develop.domain.user.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.servlet.http.HttpServletRequest;
+import org.gyu.develop.domain.user.dto.RequestUser;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -15,7 +14,7 @@ public class UserController {
     }
 
     @PostMapping
-    public void loginUser() {
+    public void loginUser(@RequestBody RequestUser user, HttpServletRequest req) {
 
     }
 }
