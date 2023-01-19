@@ -1,12 +1,11 @@
-package org.gyu.develop.domain.user.controller;
+package org.gyu.develop.domain.member.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import org.gyu.develop.domain.user.dto.RequestUser;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class MemberController {
 
     @GetMapping
     public String hello() {

@@ -5,8 +5,8 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.gyu.develop.domain.common.dto.RequestLogin;
 import org.gyu.develop.domain.common.dto.TokenInfo;
-import org.gyu.develop.domain.user.dto.RequestUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -37,7 +37,7 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    public TokenInfo createToken(Authentication authentication, RequestUser user) {
+    public TokenInfo createToken(Authentication authentication, RequestLogin user) {
 
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)

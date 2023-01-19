@@ -1,10 +1,9 @@
-package org.gyu.develop.domain.user.dto;
+package org.gyu.develop.domain.common.dto;
 
 import lombok.Data;
 
 @Data
-public class RequestUser {
-
+public class RequestLogin {
     private String email;
     private String password;
 }
