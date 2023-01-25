@@ -5,23 +5,59 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.gyu.develop.domain.common.dto.CustomUserDetails;
-import org.gyu.develop.global.dto.BaseTime;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
-@Entity(name="user")
-public class Member extends CustomUserDetails {
+@Entity(name="member")
+public class Member implements UserDetails {
 
     @Id
     @GeneratedValue()
-    private Long id;
+    private int id;
+
     private String email;
     private String password;
     private String name;
     private String phoneNumber;
 
-    public boolean isMatchPassword(String password) {
-        return this.password.equals(password);
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // 해당 유저의 권한을 리턴
+        return null;
     }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 }

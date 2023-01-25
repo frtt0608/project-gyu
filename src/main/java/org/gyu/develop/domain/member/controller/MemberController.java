@@ -12,8 +12,8 @@ public class MemberController {
         return "Hello world";
     }
 
-    @PostMapping
-    public void loginUser(@RequestBody RequestUser user, HttpServletRequest req) {
-
-    }
+//    @PostMapping
+//    public void loginUser(@RequestBody RequestUser user, HttpServletRequest req) {
+//
+//    }
 }

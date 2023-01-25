@@ -21,17 +21,19 @@ public class SecurityConfig {
 
     private final TokenProvider tokenProvider;
 
+    private static final String[] AUTH_WHITELIST = {
+      "/", "/member/**"
+    };
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity security) throws Exception {
 
-        security.httpBasic().disable()
+        security.formLogin().disable()
+                .httpBasic().disable()
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authorizeHttpRequests()
-                .requestMatchers("").permitAll()
-                .anyRequest().authenticated()
-                .and()
+                .authorizeHttpRequests(authorize -> authorize.shouldFilterAllDispatcherTypes(false).requestMatchers(AUTH_WHITELIST).permitAll())
                 .addFilterBefore(new JwtAuthenticationFilter(tokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return security.build();

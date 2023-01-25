@@ -39,13 +39,13 @@ public class TokenProvider {
 
     public TokenInfo createToken(Authentication authentication, RequestLogin user) {
 
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
+//        String authorities = authentication.getAuthorities().stream()
+//                .map(GrantedAuthority::getAuthority)
+//                .collect(Collectors.joining(","));
 
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
-                .claim("auth", authorities)
+//                .claim("auth", authorities)
                 .claim("email", user.getEmail())
                 .setExpiration(EXPIRATION_TIME)
                 .signWith(key, SignatureAlgorithm.HS256)
