@@ -1,19 +1,26 @@
 package org.gyu.develop.domain.member.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.*;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.gyu.develop.domain.common.application.LoginService;
+import org.gyu.develop.domain.common.dto.RequestLogin;
+import org.gyu.develop.domain.common.dto.TokenInfo;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
+@RequiredArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/member")
 public class MemberController {
 
-    @GetMapping
-    public String hello() {
-        return "Hello world";
-    }
+    private LoginService loginService;
 
-//    @PostMapping
-//    public void loginUser(@RequestBody RequestUser user, HttpServletRequest req) {
-//
-//    }
+    @PostMapping("/login")
+    public TokenInfo login(@RequestBody RequestLogin requestLogin) {
+        log.info(" >>>>> Login Api >>>>> ");
+        return loginService.login(requestLogin);
+    }
 }

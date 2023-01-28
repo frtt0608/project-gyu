@@ -36,7 +36,6 @@ class LoginControllerTest {
         String password = "new1234!";
         requestLogin = new RequestLogin(email, password);
 
-        //        this.mockMvc = MockMvcBuilders.standaloneSetup(new LoginController()).build();
         this.mockMvc = MockMvcBuilders.webAppContextSetup(context)
                 .apply(springSecurity())
                 .build();

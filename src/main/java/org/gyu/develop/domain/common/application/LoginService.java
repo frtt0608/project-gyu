@@ -24,14 +24,11 @@ public class LoginService {
         log.info(requestLogin.toString());
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(requestLogin.getEmail(), requestLogin.getPassword());
 
-        log.info(authenticationToken.toString());
         // authenticate 메서드를 통해 CustomUserService > loadUserByUsername 메서드 실행 > 인증
         Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        log.info(authentication.toString());
 
         // 인증 정보 기반으로 JWT 생성
         TokenInfo tokenInfo = tokenProvider.createToken(authentication, requestLogin);
-        log.info(tokenInfo.toString());
 
         return tokenInfo;
     }
